@@ -1,6 +1,7 @@
 package StepObjects;
 
 import PageObjects.CartPage;
+import io.qameta.allure.Step;
 
 public class CartSteps {
 
@@ -10,6 +11,7 @@ public class CartSteps {
         cartPage = new CartPage();
     }
 
+    @Step("checkout process")
     public void moveCheckout(){
 
         cartPage.proceedToCheckoutBtn.click();
@@ -38,6 +40,7 @@ public class CartSteps {
 
         cartPage.confirmOrderBtn.click();
     }
+    @Step("move customer support link")
     public void moveCustomerSupport(){
 
         cartPage.customerSupportLink.click();

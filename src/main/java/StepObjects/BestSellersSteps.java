@@ -2,6 +2,7 @@ package StepObjects;
 
 import DataObjects.BestSellersData;
 import PageObjects.BestSellersPage;
+import io.qameta.allure.Step;
 
 public class BestSellersSteps {
     BestSellersPage bestSellersPage;
@@ -20,6 +21,7 @@ public class BestSellersSteps {
         bestSellersPage.discountProducts.hover();
     }
 
+    @Step("show discount product")
     public void clickMoreButton(){
         bestSellersPage.moreButton.click();
     }

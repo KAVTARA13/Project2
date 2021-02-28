@@ -1,6 +1,7 @@
 package StepObjects;
 
 import PageObjects.CustomerServicePage;
+import io.qameta.allure.Step;
 
 import java.io.File;
 
@@ -28,6 +29,7 @@ public class CustomerServiceSteps {
 
         customerServicePage.attach.uploadFile(new File("src/main/resources/attachtext.txt"));
     }
+    @Step("send report")
     public void sendReport(){
 
         customerServicePage.sendBtn.click();

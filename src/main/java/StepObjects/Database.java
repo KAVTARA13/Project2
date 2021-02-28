@@ -1,5 +1,7 @@
 package StepObjects;
 
+import io.qameta.allure.Step;
+
 import java.sql.*;
 
 public class Database {
@@ -18,6 +20,7 @@ public class Database {
         return conn;
     }
 
+    @Step("insert user with data: {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}")
     public void insertUser(String firstName,String lastName, String phone,String password,String address, String email, String state,String city, int zip) {
 
         String sql = " insert into users\n" +

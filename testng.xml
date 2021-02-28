@@ -9,9 +9,6 @@
             <define name="Regression2">
                 <include name="Regression2"/>
             </define>
-            <run>
-                <include name="Regression2"/>
-            </run>
         </groups>
         <classes>
             <class name="Tests"/>

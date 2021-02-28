@@ -4,12 +4,15 @@ import DataObjects.MessageData;
 import DataObjects.RegistrationData;
 import PageObjects.PopupPage;
 import StepObjects.*;
+import io.qameta.allure.*;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import static com.codeborne.selenide.Selenide.open;
 
+@Listeners({AllureListener.class})
+@Epic("insert/register user, buy discount product, send product friend, send report")
 public class Tests extends BaseSteps {
     RegistrationData registrationData;
     BestSellersData bestSellersData;
@@ -45,7 +48,9 @@ public class Tests extends BaseSteps {
         messageData = new MessageData();
     }
 
-    @Test
+    @Story("User registration")
+    @Test(description = "User registration")
+    @Description("User registration")
     public void userRegistration() throws SQLException {
         database.insertUser(registrationData.firstName,registrationData.lastName,registrationData.phone,registrationData.password,registrationData.address,registrationData.email,registrationData.state,registrationData.city,registrationData.zip);
         open("/index.php");
@@ -67,7 +72,10 @@ public class Tests extends BaseSteps {
         }
     }
 
-    @Test(dataProviderClass = FriendsData.class, dataProvider = "Friends",groups = {"Resgression1"})
+    @Feature("test from Resgression1 group")
+    @Story("Send friends discount product")
+    @Description("Send friends discount product")
+    @Test(dataProviderClass = FriendsData.class, dataProvider = "Friends",groups = {"Resgression1"},description = "Send friends product")
     public void sendFriends(String name,String email){
         open("/index.php");
         homeSteps.clickBestSellers();
@@ -83,7 +91,10 @@ public class Tests extends BaseSteps {
         popupSteps.enterEmail(email);
         }
 
-    @Test(dependsOnMethods = "userRegistration" ,groups = {"Regression2"})
+    @Feature("test from Regression2 group")
+    @Story("Buy 2 M size discount product")
+    @Description("Buy 2 M size discount product")
+    @Test(dependsOnMethods = "userRegistration" ,groups = {"Regression2"},description = "Buy discount products")
     public void buyProduct(){
         open("/index.php");
         homeSteps.clickBestSellers();
@@ -105,7 +116,11 @@ public class Tests extends BaseSteps {
         cartSteps.confirmOrder();
     }
 
-    @Test(dependsOnMethods = "userRegistration",retryAnalyzer = MyRetry.class,groups = {"Regression2"})
+    @Feature("test from Regression2 group")
+    @Feature("add product tests")
+    @Story("Buy dress and send report")
+    @Description("Buy dress and send report")
+    @Test(dependsOnMethods = "userRegistration",retryAnalyzer = MyRetry.class,groups = {"Regression2"},description = "Buy dress and send report")
     public void sendReport(){
         open("/index.php");
         homeSteps.hoverDresses();
@@ -127,4 +142,5 @@ public class Tests extends BaseSteps {
         customerServiceSteps.attachFile();
         customerServiceSteps.sendReport();
     }
+
 }
