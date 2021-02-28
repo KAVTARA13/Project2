@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/User/IdeaProjects/Project2/src/test/java/Tests.java">
+        <groups>
+            <define name="Resgression1">
+                <include name="Resgression1"/>
+            </define>
+            <define name="Regression2">
+                <include name="Regression2"/>
+            </define>
+        </groups>
+        <classes>
+            <class name="Tests"/>
+        </classes>
+    </test>
+</suite>
